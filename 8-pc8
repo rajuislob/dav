@@ -1,0 +1,17 @@
+import numpy as np 
+import pandas as pd
+
+data= {'Name':['Shah','Vats','Vats','Kumar','Vats','Kumar','Shah','Shah','Kumar','Vats'],
+       'Gender':['M','M','F','F','F','M','M','F','F','M'],
+       'MonthlyIncome':[114000.00,65000.00,43150.00,69500.00,155000.00,103000.00,55000.00,112400.00,81030.00,71900.00]}
+df=pd.DataFrame(data)
+df
+
+df.groupby('Name')['MonthlyIncome'].sum()
+
+df.groupby('Name')['MonthlyIncome'].max()
+
+df[df['MonthlyIncome']>60000.00]
+
+Shah=df[df['Name']=='Shah']
+Shah[Shah['Gender']=='F'].mean()
