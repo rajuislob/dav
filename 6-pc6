@@ -1,0 +1,22 @@
+import pandas as pd
+data=pd.read_csv('GameSales.csv',encoding='latin-1')
+data
+
+import numpy as np
+data.groupby('Genre')['Global'].mean()
+
+data['Year'].fillna(inplace=True,method='ffill')
+
+from datetime import datetime
+date=list()
+for i in data['Year']:
+    date.append(datetime.strptime(str(i),'%Y.%M'))
+data['Year']=date
+data
+
+
+pd.pivot_table(data,values='Global',index=['Genre','Year'],aggfunc='mean').sort_values(by='Global')
+
+grouped=data.groupby(['Genre',pd.cut(data['Global'],5)])
+grouped.size().unstack()
+
